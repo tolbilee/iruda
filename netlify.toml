@@ -1,0 +1,39 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/"
+  to = "/newspaper_maker.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/ko"
+  to = "/ko.html"
+  status = 200
+
+[[redirects]]
+  from = "/en"
+  to = "/en.html"
+  status = 200
+
+[[redirects]]
+  from = "/newspaper_maker.html"
+  to = "/press"
+  status = 301
+
+[[redirects]]
+  from = "/press"
+  to = "/newspaper_maker.html"
+  status = 200
+
+[[headers]]
+  for = "/press"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/newspaper_maker.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+

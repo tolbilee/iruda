@@ -1,0 +1,59 @@
+[
+  {
+    "id": "AOC05Kw9iscBBNfjol5H",
+    "name": "황성신문",
+    "imageUrl": "img/templates/hwangseong.jpg",
+    "photoArea": {
+      "x": 0.05324074074074075,
+      "y": 0.20333333333333334,
+      "width": 0.8923611111111113,
+      "height": 0.36333333333333334,
+      "maxLines": 11
+    },
+    "textArea": {
+      "x": 0.05555555555555555,
+      "y": 0.5766666666666667,
+      "width": 0.8865740740740742,
+      "height": 0.13,
+      "maxLines": 4
+    }
+  },
+  {
+    "id": "H6IUiwM9qp9RS8xVtbgT",
+    "name": "제국신문",
+    "imageUrl": "img/templates/jeguk.jpg",
+    "photoArea": {
+      "x": 0.054398148148148154,
+      "y": 0.20333333333333334,
+      "width": 0.8912037037037037,
+      "height": 0.36333333333333334,
+      "maxLines": 11
+    },
+    "textArea": {
+      "x": 0.05555555555555555,
+      "y": 0.5766666666666667,
+      "width": 0.8865740740740742,
+      "height": 0.13,
+      "maxLines": 4
+    }
+  },
+  {
+    "id": "iTGE0iBqIvKuyOd10pJW",
+    "name": "뉴욕헤럴드",
+    "imageUrl": "img/templates/herald.jpg",
+    "photoArea": {
+      "x": 0.21064814814814817,
+      "y": 0.17250000000000001,
+      "width": 0.5798611111111112,
+      "height": 0.2783333333333333,
+      "maxLines": 8
+    },
+    "textArea": {
+      "x": 0.212962962962963,
+      "y": 0.4608333333333334,
+      "width": 0.5752314814814815,
+      "height": 0.14333333333333334,
+      "maxLines": 4
+    }
+  }
+]

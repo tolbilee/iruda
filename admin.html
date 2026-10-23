@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B1524">
+    <title>사보 관리 · 2026 접견례</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+        const SUPABASE_URL = 'https://tmrscckdkxxgyhzwjgjd.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRtcnNjY2tka3h4Z3loendqZ2pkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyOTE4MjAsImV4cCI6MjEwNDg2NzgyMH0.8-Ubs1yEMWOwg5vtpx33lJOv-e0bzvm2Yidyo5mtAVM';
+        window.supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    </script>
+    <style>
+        :root {
+            --navy: #0B1524;
+            --navy-2: #142033;
+            --cream: #F3EDE2;
+            --gold: #C6A15B;
+            --gold-2: #E4D09A;
+            --ink: #1A1814;
+            --muted: #6F675C;
+            --serif: 'Gowun Batang', 'Batang', serif;
+            --sans: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            min-height: 100dvh;
+            background: var(--navy);
+            color: var(--cream);
+            font-family: var(--sans);
+        }
+
+        .top {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 22px 24px 16px;
+            border-bottom: 1px solid rgba(198, 161, 91, 0.2);
+        }
+
+        .kicker {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .stats {
+            display: flex;
+            gap: 18px;
+            color: rgba(243, 237, 226, 0.7);
+            font-size: 13px;
+        }
+
+        .stats b {
+            color: var(--gold-2);
+            font-size: 20px;
+            font-family: var(--serif);
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            padding: 14px 24px;
+        }
+
+        input, select, button {
+            font-family: inherit;
+        }
+
+        .search {
+            flex: 1;
+            height: 44px;
+            padding: 0 14px;
+            border: 1px solid rgba(198, 161, 91, 0.28);
+            border-radius: 10px;
+            background: rgba(243, 237, 226, 0.96);
+            color: var(--ink);
+        }
+
+        .ghost, .gold {
+            height: 44px;
+            padding: 0 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .ghost {
+            border: 1px solid rgba(243, 237, 226, 0.16);
+            background: transparent;
+            color: var(--cream);
+        }
+
+        .gold {
+            border: 0;
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(280px, 380px) 1fr;
+            min-height: calc(100dvh - 140px);
+        }
+
+        .list {
+            border-right: 1px solid rgba(198, 161, 91, 0.16);
+            overflow: auto;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 72px 1fr;
+            gap: 12px;
+            width: 100%;
+            padding: 12px 16px;
+            border: 0;
+            border-bottom: 1px solid rgba(243, 237, 226, 0.06);
+            background: transparent;
+            color: inherit;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .row.is-on,
+        .row:hover {
+            background: rgba(198, 161, 91, 0.08);
+        }
+
+        .row img {
+            width: 72px;
+            height: 96px;
+            object-fit: cover;
+            border-radius: 6px;
+            background: #111;
+        }
+
+        .row strong {
+            display: block;
+            font-family: var(--serif);
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .row small {
+            display: block;
+            color: rgba(243, 237, 226, 0.58);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .empty {
+            padding: 40px 20px;
+            text-align: center;
+            color: rgba(243, 237, 226, 0.6);
+            line-height: 1.7;
+        }
+
+        .detail {
+            padding: 24px;
+            overflow: auto;
+        }
+
+        .detail-empty {
+            height: 100%;
+            display: grid;
+            place-items: center;
+            color: rgba(243, 237, 226, 0.5);
+        }
+
+        .sheet {
+            display: grid;
+            grid-template-columns: minmax(240px, 360px) 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .sheet img {
+            width: 100%;
+            border-radius: 10px;
+            background: #111;
+        }
+
+        .meta h2 {
+            font-family: var(--serif);
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .meta p {
+            color: rgba(243, 237, 226, 0.78);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .article {
+            margin-top: 18px;
+            padding: 16px;
+            border-left: 3px solid var(--gold);
+            background: rgba(243, 237, 226, 0.06);
+            font-family: var(--serif);
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 860px) {
+            .layout,
+            .sheet {
+                grid-template-columns: 1fr;
+            }
+
+            .list {
+                max-height: 42vh;
+                border-right: 0;
+                border-bottom: 1px solid rgba(198, 161, 91, 0.16);
+            }
+
+            .top, .toolbar, .detail {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top">
+        <div>
+            <span class="kicker">ADMIN</span>
+            <h1>사보 관리</h1>
+        </div>
+        <div class="stats">
+            <div>전체 <b id="count-all">0</b></div>
+            <div>오늘 <b id="count-today">0</b></div>
+        </div>
+    </header>
+    <div class="toolbar">
+        <input id="search" class="search" type="search" placeholder="특파원, 발신지, 본문으로 찾다">
+        <select id="place" class="search" style="flex: 0 0 160px;">
+            <option value="">모든 현장</option>
+            <option value="광명문">광명문</option>
+            <option value="함녕전">함녕전</option>
+            <option value="정관헌">정관헌</option>
+            <option value="즉조당">즉조당·준명당</option>
+        </select>
+        <button type="button" class="ghost" onclick="loadSabo()">다시 불러오다</button>
+    </div>
+    <div class="layout">
+        <aside id="list" class="list">
+            <div class="empty">사보를 펼치는 중...</div>
+        </aside>
+        <main id="detail" class="detail">
+            <div class="detail-empty">왼쪽에서 호외를 고르시오.</div>
+        </main>
+    </div>
+    <script>
+        var items = [];
+        var selectedId = null;
+
+        function formatTime(value) {
+            if (!value) return '';
+            var date = new Date(value);
+            if (isNaN(date.getTime())) return '';
+            return (date.getMonth() + 1) + '월 ' + date.getDate() + '일 ' +
+                String(date.getHours()).padStart(2, '0') + ':' +
+                String(date.getMinutes()).padStart(2, '0');
+        }
+
+        function isToday(value) {
+            var date = new Date(value);
+            var now = new Date();
+            return date.getFullYear() === now.getFullYear() &&
+                date.getMonth() === now.getMonth() &&
+                date.getDate() === now.getDate();
+        }
+
+        function filtered() {
+            var q = document.getElementById('search').value.trim();
+            var place = document.getElementById('place').value;
+            return items.filter(function(item) {
+                var hay = [item.reporter, item.dateline, item.assignment, item.body, item.template_name].join(' ');
+                var okQuery = !q || hay.indexOf(q) !== -1;
+                var okPlace = !place || (item.assignment || '').indexOf(place) !== -1;
+                return okQuery && okPlace;
+            });
+        }
+
+        function renderList() {
+            var list = document.getElementById('list');
+            var rows = filtered();
+            document.getElementById('count-all').textContent = items.length;
+            document.getElementById('count-today').textContent = items.filter(function(item) { return isToday(item.created_at); }).length;
+
+            if (!rows.length) {
+                list.innerHTML = '<div class="empty">해당하는 사보가 없소.</div>';
+                return;
+            }
+
+            list.innerHTML = '';
+            rows.forEach(function(item) {
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'row' + (item.id === selectedId ? ' is-on' : '');
+                btn.onclick = function() { selectItem(item.id); };
+                btn.innerHTML =
+                    '<img src="' + item.image_url + '" alt="">' +
+                    '<div><strong>특파원 ' + (item.reporter || '무명') + '</strong>' +
+                    '<small>' + (item.assignment || '') + (item.dateline ? ' · ' + item.dateline : '') + '</small>' +
+                    '<small>' + formatTime(item.created_at) + '</small></div>';
+                list.appendChild(btn);
+            });
+        }
+
+        function selectItem(id) {
+            selectedId = id;
+            var item = items.find(function(row) { return row.id === id; });
+            renderList();
+            if (!item) return;
+            document.getElementById('detail').innerHTML =
+                '<div class="sheet">' +
+                    '<img src="' + item.image_url + '" alt="호외">' +
+                    '<div class="meta">' +
+                        '<h2>특파원 ' + (item.reporter || '무명') + '</h2>' +
+                        '<p>' + (item.dateline || '-') + '</p>' +
+                        '<p>' + (item.assignment || '-') + (item.assignment_time ? ' · ' + item.assignment_time : '') + '</p>' +
+                        '<p>' + (item.template_name || '지면 미상') + ' · ' + formatTime(item.created_at) + '</p>' +
+                        '<div class="article">' + (item.body || '본문이 없소.') + '</div>' +
+                        '<div class="actions">' +
+                            '<a class="gold" style="display:inline-flex;align-items:center;text-decoration:none;" href="' + item.image_url + '" target="_blank" rel="noopener">원본을 열다</a>' +
+                            '<button type="button" class="ghost" onclick="downloadImage(\'' + item.image_url + '\', \'' + (item.reporter || 'sabo') + '\')">내려받다</button>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+        }
+
+        async function downloadImage(src, name) {
+            var response = await fetch(src);
+            var blob = await response.blob();
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = '사보_' + name + '.jpg';
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
+
+        async function loadSabo() {
+            var list = document.getElementById('list');
+            list.innerHTML = '<div class="empty">사보를 펼치는 중...</div>';
+            var result = await window.supabaseClient.from('sabo').select('*').order('created_at', { ascending: false });
+            if (result.error) {
+                list.innerHTML = '<div class="empty">사보를 열지 못했소. ' + result.error.message + '</div>';
+                return;
+            }
+            items = result.data || [];
+            renderList();
+            if (selectedId && items.some(function(item) { return item.id === selectedId; })) {
+                selectItem(selectedId);
+            }
+        }
+
+        document.getElementById('search').addEventListener('input', renderList);
+        document.getElementById('place').addEventListener('change', renderList);
+
+        var ready = setInterval(function() {
+            if (window.supabaseClient) {
+                clearInterval(ready);
+                loadSabo();
+            }
+        }, 80);
+    </script>
+</body>
+</html>
